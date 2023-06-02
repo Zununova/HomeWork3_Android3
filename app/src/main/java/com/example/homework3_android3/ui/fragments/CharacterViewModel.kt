@@ -4,21 +4,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.homework3_android3.App
 import com.example.homework3_android3.models.CharacterModel
-import com.example.homework3_android3.models.RickAndMortyResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class CharacterViewModel : ViewModel() {
 
-    fun fetchCharacters(): MutableLiveData<RickAndMortyResponse<CharacterModel>?> {
-        val data = MutableLiveData<RickAndMortyResponse<CharacterModel>?>()
+    fun fetchCharacters(id: Int): MutableLiveData<List<CharacterModel>?> {
+        val data = MutableLiveData<List<CharacterModel>?>()
 
-        App.characterApi?.fetchCharacter()
-            ?.enqueue(object : Callback<RickAndMortyResponse<CharacterModel>> {
+        App.characterApi?.fetchCharacter(id)
+            ?.enqueue(object : Callback<List<CharacterModel>> {
                 override fun onResponse(
-                    call: Call<RickAndMortyResponse<CharacterModel>>,
-                    response: Response<RickAndMortyResponse<CharacterModel>>
+                    call: Call<List<CharacterModel>>,
+                    response: Response<List<CharacterModel>>
                 ) {
                     if (response.body() != null) {
                         data.value = response.body()
@@ -26,7 +25,7 @@ class CharacterViewModel : ViewModel() {
                 }
 
                 override fun onFailure(
-                    call: Call<RickAndMortyResponse<CharacterModel>>,
+                    call: Call<List<CharacterModel>>,
                     t: Throwable
                 ) {
                     data.value = null

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class CharacterModel(
 
     @SerializedName("id")
-    val id: Int,
+    var id: Int,
 
     @SerializedName("name")
     val name: String,
@@ -25,3 +25,4 @@ data class CharacterModel(
     @SerializedName("gender")
     val gender: String
 )
+

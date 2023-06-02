@@ -48,8 +48,8 @@ class CharacterFragment : Fragment() {
     }
 
     private fun setUpObserves() {
-        viewModel?.fetchCharacters()?.observe(viewLifecycleOwner) {
-            characterAdapter.submitList(it?.results)
+        viewModel?.fetchCharacters(id)?.observe(viewLifecycleOwner) {
+            characterAdapter.submitList(it)
         }
     }
 }

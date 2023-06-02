@@ -8,10 +8,12 @@ import retrofit2.http.Path
 
 interface CharacterApi {
 
-    @GET("api/character")
-    fun fetchCharacter(): Call<RickAndMortyResponse<CharacterModel>>
+    @GET("api/v2/pokemon/{id}")
+    fun fetchCharacter(
+        @Path("id") id: Int
+    ): Call<List<CharacterModel>>
 
-    @GET("api/character/{id}")
+    @GET("api/v2/ability/{id}")
     fun fetchIdCharacter(
         @Path("id") id: Int
     ): Call<CharacterModel>
